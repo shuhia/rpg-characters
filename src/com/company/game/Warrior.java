@@ -11,6 +11,12 @@ public class Warrior extends Character {
         Collections.addAll(this.equipableItems, warriorArmorTypes);
     }
 
+    public Warrior() {
+        super("Warrior", warriorBaseAttributes, warriorGrowthAttributes);
+        Collections.addAll(this.equipableItems, warriorWeaponTypes);
+        Collections.addAll(this.equipableItems, warriorArmorTypes);
+    }
+
 
     @Override
     public double getTotalDamagePerSecond() {

@@ -1,7 +1,7 @@
 package com.company.game;
 
-import com.company.types.InvalidArmorException;
-import com.company.types.InvalidWeaponException;
+import com.company.excpetions.InvalidArmorException;
+import com.company.excpetions.InvalidWeaponException;
 import com.company.types.Slot;
 
 import java.util.ArrayList;
