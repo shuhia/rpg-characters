@@ -23,7 +23,7 @@ public abstract class Character {
         this.level++;
     }
 
-    ;
+
 
     protected void equip(Item item) {
         if (this.level >= item.requiredLevel) {
@@ -51,8 +51,6 @@ public abstract class Character {
         Attributes sumOfAttributes = this.baseAttributes.add(armorAttributes).add(levelAttributes);
         return sumOfAttributes;
     }
-
-    ;
 
     protected void printStats() {
         System.out.println("name: " + name);
