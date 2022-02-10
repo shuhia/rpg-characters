@@ -49,6 +49,16 @@ public class Attributes {
         return new Attributes(this.strength + secondAttribute.strength, this.dexterity + secondAttribute.dexterity, this.intelligence + secondAttribute.intelligence);
     }
 
+
+    @Override
+    public String toString() {
+        return "Attributes{" +
+                "strength=" + strength +
+                ", dexterity=" + dexterity +
+                ", intelligence=" + intelligence +
+                '}';
+    }
+
     public void print() {
         System.out.println("strength: " + strength);
         System.out.println("dexterity: " + dexterity);
