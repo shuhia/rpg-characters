@@ -14,11 +14,11 @@ public class Client {
         return input;
     }
 
-    public void run() {
+    public void run() throws Exception {
         System.out.println("Welcome to RPG Characters");
         Character warrior = new Warrior("Alex");
         Item bodyArmor = new Armor(ArmorType.CLOTH, "Skjorta", 1, Slot.BODY, new Attributes(10, 10, 10));
-        Item weapon = new Weapon("Axe", 1, Slot.WEAPON, WeaponType.AXE, 10, 1);
+        Item weapon = new Weapon("Axe", 1, WeaponType.AXE, 10, 1);
         warrior.equip(bodyArmor);
         warrior.equip(weapon);
         warrior.equip(weapon);
