@@ -1,11 +1,11 @@
-package com.company;
+package com.company.game;
 
 import java.util.Collections;
 
-import static com.company.CharacterSpecifications.*;
+import static com.company.game.CharacterSpecifications.*;
 
 public class Warrior extends Character {
-    protected Warrior(String name) {
+    public Warrior(String name) {
         super(name, warriorBaseAttributes, warriorGrowthAttributes);
         Collections.addAll(this.equipableItems, warriorWeaponTypes);
         Collections.addAll(this.equipableItems, warriorArmorTypes);
@@ -20,7 +20,7 @@ public class Warrior extends Character {
     }
 
     @Override
-    protected double getTotalPrimaryAttribute() {
+    public double getTotalPrimaryAttribute() {
         return getTotalAttributes().strength;
     }
 

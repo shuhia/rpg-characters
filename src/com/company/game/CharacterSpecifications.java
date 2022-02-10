@@ -1,7 +1,10 @@
-package com.company;
+package com.company.game;
 
-import static com.company.ArmorType.*;
-import static com.company.WeaponType.*;
+import com.company.types.ArmorType;
+import com.company.types.WeaponType;
+
+import static com.company.types.ArmorType.*;
+import static com.company.types.WeaponType.*;
 
 public abstract class CharacterSpecifications {
     // Mage specifications

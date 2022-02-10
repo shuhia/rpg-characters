@@ -1,16 +1,18 @@
-package com.company;
+package com.company.game;
+
+import com.company.types.ArmorType;
+import com.company.types.Slot;
 
 public class Armor extends Item {
-    ArmorType type;
+
     Attributes attributes;
 
     public Armor(ArmorType type, String name, int requiredLevel, Slot slot, Attributes attributes) {
-        super(name, requiredLevel, slot);
-        this.type = type;
+        super(name, requiredLevel, slot, type);
         this.attributes = attributes;
     }
 
-    public ArmorType getType() {
+    public Enum<ArmorType> getType() {
         return type;
     }
 

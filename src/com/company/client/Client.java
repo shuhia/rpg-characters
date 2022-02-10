@@ -1,4 +1,10 @@
-package com.company;
+package com.company.client;
+
+import com.company.game.Character;
+import com.company.game.*;
+import com.company.types.ArmorType;
+import com.company.types.Slot;
+import com.company.types.WeaponType;
 
 import java.util.Scanner;
 

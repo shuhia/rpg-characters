@@ -1,13 +1,15 @@
-package com.company;
+package com.company.test;
 
+import com.company.game.Attributes;
+import com.company.game.Character;
+import com.company.game.Warrior;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.company.CharacterSpecifications.warriorBaseAttributes;
-import static com.company.CharacterSpecifications.warriorGrowthAttributes;
+import static com.company.game.CharacterSpecifications.warriorBaseAttributes;
+import static com.company.game.CharacterSpecifications.warriorGrowthAttributes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class WarriorTest {
     Character character;
@@ -74,19 +76,6 @@ class WarriorTest {
         var newAttributes = character.getTotalAttributes().toString();
         // Assert
         assertEquals(newAttributes, expectedAttributes);
-    }
-
-
-    @Test
-    void Equip_LevelOneCharacterWithLevelTwoWeapon_AndThrowInvalidWeaponException() {
-        var item = new Weapon("Axe", 2, WeaponType.AXE, 10.0, 10.0);
-        assertThrows(InvalidWeaponException.class, () -> character.equip(item));
-    }
-
-    @Test
-    void Equip_LevelOneCharacterWithLevelTwoArmor_AndThrowInvalidArmorException() {
-        var item = new Armor(ArmorType.PLATE, "Armor", 2, Slot.BODY, new Attributes());
-        assertThrows(InvalidArmorException.class, () -> character.equip(item));
     }
 
 }
