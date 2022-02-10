@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class Character {
-    String name;
-    int level = 1;
-    Attributes baseAttributes;
-    Attributes levelUpAttributeGain;
-    HashMap<Slot, Item> equipped;
-    ArrayList<Enum> equipableItems;
+    protected String name;
+    protected int level = 1;
+    protected Attributes baseAttributes;
+    protected Attributes levelUpAttributeGain;
+    protected HashMap<Slot, Item> equipped;
+    protected ArrayList<Enum> equipableItems;
 
     protected Character(String name, Attributes baseAttributes, Attributes levelUpAttributeGain) {
         this.name = name;
@@ -19,19 +19,18 @@ public abstract class Character {
         this.equipableItems = new ArrayList<>(3);
     }
 
-    public int getLevel() {
+    protected int getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    protected void setLevel(int level) {
         this.level = level;
     }
 
-    public int levelUp() {
+    protected int levelUp() {
         this.level++;
         return this.level;
     }
-
 
     protected boolean equip(Item item) throws Exception {
         if (this.level >= item.requiredLevel) {
@@ -60,7 +59,15 @@ public abstract class Character {
         return true;
     }
 
-    protected abstract double getTotalDamagePerSecond();
+    protected Attributes getAttributesFromArmor() {
+        return equipped.values().stream().filter(Armor.class::isInstance).map((armor) -> ((Armor) armor).getAttributes()).reduce(new Attributes(), Attributes::add);
+    }
+
+    protected Attributes getAttributesFromLevel() {
+        return this.levelUpAttributeGain.multiplyWith(this.level - 1);
+    }
+
+    protected abstract double getTotalPrimaryAttribute();
 
     protected Attributes getTotalAttributes() {
         Attributes armor = getAttributesFromArmor();
@@ -70,19 +77,21 @@ public abstract class Character {
         return base.add(armor).add(level);
     }
 
-    private Attributes getAttributesFromArmor() {
-        return equipped.values().stream().filter(Armor.class::isInstance).map((armor) -> ((Armor) armor).getAttributes()).reduce(new Attributes(), Attributes::add);
-    }
-
-    private Attributes getAttributesFromLevel() {
-        return this.levelUpAttributeGain.multiplyWith(this.level - 1);
-    }
-
     protected void printStats() {
         System.out.println("name: " + name);
         System.out.println("level: " + level);
         getTotalAttributes().print();
         System.out.println("total damage per second: " + getTotalDamagePerSecond());
     }
+
+    protected double getWeaponDamagePerSecond() {
+        double weaponDamagePerSecond = 1;
+        if (equipped.containsKey(Slot.WEAPON)) {
+            weaponDamagePerSecond = ((Weapon) equipped.get(Slot.WEAPON)).getDamagePerSecond();
+        }
+        return weaponDamagePerSecond;
+    }
+
+    protected abstract double getTotalDamagePerSecond();
 
 }
