@@ -1,0 +1,21 @@
+
+E
+java:S3740"/Provide the parametrized type for this generic.(˜»òª
+7
+java:S1116"Remove this empty statement.(Åñ­õşÿÿÿÿ
+G
+java:S5261!"1Add explicit curly braces to avoid dangling else.(å¥‡
+H
+java:S1611"2Remove the parentheses around the "type" parameter(¾…çé
+N
+java:S16110"3Remove the parentheses around the "armor" parameter(ªÅÈüÿÿÿÿ
+7
+java:S11167"Remove this empty statement.(Åñ­õşÿÿÿÿ
+S	java:S106:"9Replace this use of System.out or System.err by a logger.(Î­¢üÿÿÿÿ
+N	java:S106;"9Replace this use of System.out or System.err by a logger.(½‡õÿ
+N	java:S106<"9Replace this use of System.out or System.err by a logger.(À¹è¦
+N	java:S106="9Replace this use of System.out or System.err by a logger.(ğøÈİ
+‚
+java:S14883"gImmediately return this expression instead of assigning it to the temporary variable "sumOfAttributes".(ŒÓÁùÿÿÿÿ
+5
+java:S1640"Convert this Map to an EnumMap.(˜»òª
