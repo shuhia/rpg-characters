@@ -2,6 +2,8 @@ package com.company;
 
 public abstract class Item {
     String name;
+
+
     int requiredLevel;
     Slot slot;
 
@@ -15,5 +17,9 @@ public abstract class Item {
 
     protected Slot getSlot() {
         return this.slot;
+    }
+
+    protected int getRequiredLevel() {
+        return requiredLevel;
     }
 }

@@ -39,21 +39,23 @@ public abstract class Character {
                     this.equipped.put(item.getSlot(), item);
                 } else {
                     // Throw InvalidWeaponException
-                    throw new InvalidWeaponException("Weapon is not suited for this class");
+                    throw new InvalidWeaponException("Weapon of type " + item.getType() + " is not allowed for a " + this.getClass().getSimpleName());
                 }
             else if (item instanceof Armor) {
                 if (this.equipableItems.stream().anyMatch((type) -> type == item.getType())) {
                     this.equipped.put(item.getSlot(), item);
                 } else {
                     // Throw InvalidArmorException
-                    throw new InvalidArmorException("Weapon is not suited for this class");
+                    throw new InvalidArmorException("Armor of type " + item.getType() + " is not allowed for a " + this.getClass().getSimpleName());
                 }
             }
         } else {
             // Throw InvalidWeaponException
-            if (item instanceof Weapon) throw new InvalidWeaponException("Character does not meet the required level");
+            if (item instanceof Weapon)
+                throw new InvalidWeaponException("Character does not meet the required level: " + item.getRequiredLevel());
             // Throw InvalidArmorException
-            if (item instanceof Armor) throw new InvalidArmorException("Character does not meet the required level");
+            if (item instanceof Armor)
+                throw new InvalidArmorException("Character does not meet the required level: " + item.getRequiredLevel());
 
         }
         return true;
