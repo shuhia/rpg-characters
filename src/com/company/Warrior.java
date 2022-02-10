@@ -15,12 +15,12 @@ public class Warrior extends Character {
     @Override
     public double getTotalDamagePerSecond() {
         // • Character DPS = Weapon DPS * (1 + TotalMainPrimaryAttribute/100)
-        double weaponsDamagePerSecond = 1;
+        double weaponDamagePerSecond = 1;
         if (equipped.containsKey(Slot.WEAPON)) {
-            weaponsDamagePerSecond = ((Weapon) equipped.get(Slot.WEAPON)).getDamagePerSecond();
+            weaponDamagePerSecond = ((Weapon) equipped.get(Slot.WEAPON)).getDamagePerSecond();
         }
         var totalMainAttribute = getTotalAttributes().strength;
-        var totalDamagePerSecond = weaponsDamagePerSecond * (1 + totalMainAttribute / 100);
+        var totalDamagePerSecond = weaponDamagePerSecond * (1 + totalMainAttribute / 100);
         return totalDamagePerSecond;
     }
 }

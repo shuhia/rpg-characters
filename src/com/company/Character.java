@@ -18,7 +18,6 @@ public abstract class Character {
         this.levelUpAttributeGain = levelUpAttributeGain;
         this.equipableWeapons = new ArrayList<>(3);
     }
-
     public void levelUp() {
         this.level++;
     }
@@ -42,7 +41,7 @@ public abstract class Character {
 
     }
 
-    public abstract double getTotalDamagePerSecond();
+    protected abstract double getTotalDamagePerSecond();
 
     protected Attributes getTotalAttributes() {
         Attributes armorAttributes = equipped.values().stream().filter(Armor.class::isInstance).map((armor) -> ((Armor) armor).getAttributes()).reduce(new Attributes(), Attributes::add);
@@ -55,7 +54,7 @@ public abstract class Character {
     protected void printStats() {
         System.out.println("name: " + name);
         System.out.println("level: " + level);
-        System.out.println("total attributes: " + getTotalAttributes().toString());
+        getTotalAttributes().print();
         System.out.println("total damage per second: " + getTotalDamagePerSecond());
     }
 
