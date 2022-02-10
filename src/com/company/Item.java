@@ -10,8 +10,10 @@ public abstract class Item {
         this.requiredLevel = requiredLevel;
         this.slot = slot;
     }
-    abstract Enum getType();
-    protected Slot getSlot(){
+
+    protected abstract Enum getType();
+
+    protected Slot getSlot() {
         return this.slot;
     }
 }

@@ -1,14 +1,19 @@
 package com.company;
 
-public class Warrior extends Character {
+import java.util.Arrays;
+import java.util.Collections;
 
+import static com.company.CharacterSpecifications.*;
+
+public class Warrior extends Character {
     protected Warrior(String name) {
-        super(name, new Attributes(5, 2, 1), new Attributes(3, 2, 1));
+        super(name, warriorBaseAttributes, warriorGrowthAttributes);
         // Set warrior starting attributes
         // Set equip limitations
-        this.equipableWeapons.add(WeaponType.AXE);
-        this.equipableWeapons.add(WeaponType.HAMMER);
-        this.equipableWeapons.add(WeaponType.SWORD);
+        this.equipableItems.addAll(Arrays.asList(warriorWeaponTypes));
+        Collections.addAll(this.equipableItems, warriorArmorTypes);
+
+
     }
 
 
@@ -20,7 +25,6 @@ public class Warrior extends Character {
             weaponDamagePerSecond = ((Weapon) equipped.get(Slot.WEAPON)).getDamagePerSecond();
         }
         var totalMainAttribute = getTotalAttributes().strength;
-        var totalDamagePerSecond = weaponDamagePerSecond * (1 + totalMainAttribute / 100);
-        return totalDamagePerSecond;
+        return weaponDamagePerSecond * (1 + totalMainAttribute / 100);
     }
 }
