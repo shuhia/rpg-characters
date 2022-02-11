@@ -45,8 +45,6 @@ public class Client {
             System.out.println("What do you want to do?");
             enum actions {
                 LEVEL_UP,
-                EQUIP_ITEM,
-                ATTACK,
                 PRINT_STATS,
             }
 

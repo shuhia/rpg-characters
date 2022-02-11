@@ -14,6 +14,7 @@ public interface ICharacterSpecifications {
     Attributes mageGrowthAttributes = new Attributes(1, 1, 5);
     ArmorType[] mageArmorTypes = {CLOTH};
     WeaponType[] mageWeaponTypes = {STAFF, WAND};
+
     // Ranger specifications
     Attributes rangerBaseAttributes = new Attributes(1, 5, 1);
     Attributes rangerGrowthAttributes = new Attributes(1, 5, 1);
