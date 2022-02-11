@@ -50,19 +50,16 @@ public class Client {
                 PRINT_STATS,
             }
 
-            String choice = getAlternative(Arrays.stream(actions.values()).map((value) -> value.name()).toArray()).toString();
+            String choice = getAlternative(Arrays.stream(actions.values()).map(Enum::name).toArray()).toString();
             switch (choice) {
-                case "LEVEL_UP": {
+                case "LEVEL_UP" -> {
                     c.levelUp();
-                    System.out.println(c.getLevel());
-                    break;
                 }
-                case "PRINT_STATS": {
+                case "PRINT_STATS" -> {
                     c.printStats();
-                    break;
                 }
-                default: {
-                    System.out.println("Fail");
+                default -> {
+                    System.out.println("Invalid action");
                 }
             }
         }
@@ -87,10 +84,10 @@ public class Client {
             case "RANGER": {
                 return new Ranger();
             }
-            case "MAGE":{
+            case "MAGE": {
                 return new Mage();
             }
-            case "ROGUE":{
+            case "ROGUE": {
                 return new Rogue();
             }
             default:
