@@ -6,16 +6,13 @@ import static com.company.game.ICharacterSpecifications.*;
 
 
 public class Warrior extends Character {
+
     public Warrior(String name) {
-        super(name, warriorBaseAttributes, warriorGrowthAttributes);
-        Collections.addAll(this.equipableItems, warriorWeaponTypes);
-        Collections.addAll(this.equipableItems, warriorArmorTypes);
+        super(name, warriorBaseAttributes, warriorGrowthAttributes,warriorWeaponTypes, warriorArmorTypes);
     }
 
     public Warrior() {
-        super("Warrior", warriorBaseAttributes, warriorGrowthAttributes);
-        Collections.addAll(this.equipableItems, warriorWeaponTypes);
-        Collections.addAll(this.equipableItems, warriorArmorTypes);
+        super("Warrior", warriorBaseAttributes, warriorGrowthAttributes,warriorWeaponTypes,warriorArmorTypes);
     }
 
 

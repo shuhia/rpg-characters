@@ -2,10 +2,16 @@ package com.company.game;
 
 import com.company.excpetions.InvalidArmorException;
 import com.company.excpetions.InvalidWeaponException;
+import com.company.types.ArmorType;
 import com.company.types.Slot;
+import com.company.types.WeaponType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+
+import static com.company.game.ICharacterSpecifications.warriorArmorTypes;
+import static com.company.game.ICharacterSpecifications.warriorWeaponTypes;
 
 public abstract class Character {
     public String name;
@@ -22,6 +28,16 @@ public abstract class Character {
         this.levelUpAttributeGain = levelUpAttributeGain;
         this.equipableItems = new ArrayList<>(3);
     }
+    public Character(String name, Attributes baseAttributes, Attributes levelUpAttributeGain, WeaponType[] weaponTypes, ArmorType[] armorTypes) {
+        this.name = name;
+        this.baseAttributes = baseAttributes;
+        this.equipped = new HashMap();
+        this.levelUpAttributeGain = levelUpAttributeGain;
+        this.equipableItems = new ArrayList<>(3);
+        Collections.addAll(this.equipableItems, warriorWeaponTypes);
+        Collections.addAll(this.equipableItems, warriorArmorTypes);
+    }
+
 
     public int getLevel() {
         return level;
@@ -99,5 +115,6 @@ public abstract class Character {
     }
 
     public abstract double getTotalDamagePerSecond();
+
 
 }

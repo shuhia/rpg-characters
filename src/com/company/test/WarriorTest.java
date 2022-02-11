@@ -17,14 +17,14 @@ class WarriorTest {
     Attributes growthAttributes;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         character = new Warrior("Test Warrior");
         baseAttributes = warriorBaseAttributes;
         growthAttributes = warriorGrowthAttributes;
     }
 
     @AfterEach
-    void tearDown() {
+    void teardown() {
         character = null;
         baseAttributes = null;
         growthAttributes = null;
