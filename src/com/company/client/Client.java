@@ -39,8 +39,10 @@ public class Client {
     public void run() throws Exception {
         ItemFactory itemFactory = new ItemFactory();
         System.out.println("Welcome to RPG Characters");
+        System.out.println("---------------------------------------");
         System.out.println("Choose a character");
         Character c = getCharacter();
+        System.out.println("---------------------------------------");
         while (true) {
             System.out.println("What do you want to do?");
             enum actions {
@@ -48,7 +50,6 @@ public class Client {
                 PRINT_STATS,
                 CREATE_AXE,
             }
-
             String choice = getAlternative(Arrays.stream(actions.values()).map(Enum::name).toArray()).toString();
             switch (choice) {
                 case "LEVEL_UP" -> {
@@ -65,6 +66,8 @@ public class Client {
                     System.out.println("Invalid action");
                 }
             }
+            System.out.println("---------------------------------------");
+
         }
     }
 
