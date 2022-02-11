@@ -12,7 +12,7 @@ public class Warrior extends Character {
     }
 
     public Warrior() {
-        super("Warrior", warriorBaseAttributes, warriorGrowthAttributes,warriorWeaponTypes,warriorArmorTypes);
+        super(Warrior.class.getSimpleName(), warriorBaseAttributes, warriorGrowthAttributes,warriorWeaponTypes,warriorArmorTypes);
     }
 
     @Override

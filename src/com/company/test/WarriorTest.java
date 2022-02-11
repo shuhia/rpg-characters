@@ -18,7 +18,7 @@ class WarriorTest {
 
     @BeforeEach
     void setup() {
-        character = new Warrior("Test Warrior");
+        character = new Warrior();
         baseAttributes = warriorBaseAttributes;
         growthAttributes = warriorGrowthAttributes;
     }
@@ -67,7 +67,7 @@ class WarriorTest {
      * * o This results in four test methods.
      */
     @Test
-    void GetTotalAttributes_FromWarriorLevelOneToLevelTwo_HasIncreasedAttributes() {
+    void GetTotalAttributes_FromCharacterLevelOneToLevelTwo_HasIncreasedAttributes() {
         // Arrange
         var oldAttributes = character.getTotalAttributes();
         var expectedAttributes = oldAttributes.add(growthAttributes).toString();
