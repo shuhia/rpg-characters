@@ -114,7 +114,13 @@ public abstract class Character {
         return weaponDamagePerSecond;
     }
 
-    public abstract double getTotalDamagePerSecond();
+    public double getTotalDamagePerSecond(){
+        double weaponDamagePerSecond = getWeaponDamagePerSecond();
+        return weaponDamagePerSecond * getDamageFromAttribute(getTotalPrimaryAttribute());
+    };
 
 
+    protected double getDamageFromAttribute(double attribute) {
+        return 1 + attribute / 100;
+    }
 }

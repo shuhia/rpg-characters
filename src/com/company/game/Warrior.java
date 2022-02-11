@@ -15,22 +15,9 @@ public class Warrior extends Character {
         super("Warrior", warriorBaseAttributes, warriorGrowthAttributes,warriorWeaponTypes,warriorArmorTypes);
     }
 
-
-    @Override
-    public double getTotalDamagePerSecond() {
-        // • Character DPS = Weapon DPS * (1 + TotalMainPrimaryAttribute/100)
-        double weaponDamagePerSecond = getWeaponDamagePerSecond();
-        return weaponDamagePerSecond * getDamageFromAttribute(getTotalPrimaryAttribute());
-    }
-
     @Override
     public double getTotalPrimaryAttribute() {
         return getTotalAttributes().strength;
     }
-
-    private double getDamageFromAttribute(double attribute) {
-        return 1 + attribute / 100;
-    }
-
 
 }
