@@ -43,12 +43,14 @@ public class Client {
         System.out.println("Choose a character");
         Character c = getCharacter();
         System.out.println("---------------------------------------");
-        while (true) {
+        var isStarted = true;
+        while (isStarted) {
             System.out.println("What do you want to do?");
             enum actions {
                 LEVEL_UP,
                 PRINT_STATS,
                 CREATE_AXE,
+                END_GAME,
             }
             String choice = getAlternative(Arrays.stream(actions.values()).map(Enum::name).toArray()).toString();
             switch (choice) {
@@ -61,6 +63,9 @@ public class Client {
                 case "CREATE_AXE" -> {
                     var axe = itemFactory.createItemOf("WEAPON");
                     axe.printStats();
+                }
+                case "END_GAME" ->{
+                    isStarted = false;
                 }
                 default -> {
                     System.out.println("Invalid action");
