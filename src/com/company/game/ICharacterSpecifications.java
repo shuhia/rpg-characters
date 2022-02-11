@@ -25,6 +25,7 @@ public interface ICharacterSpecifications {
     WeaponType[] rogueWeaponTypes = {DAGGER, SWORD};
     ArmorType[] rogueArmorTypes = {LEATHER, MAIL};
     // Warrior specifications
+
     Attributes warriorBaseAttributes = new Attributes(5, 2, 1);
     Attributes warriorGrowthAttributes = new Attributes(3, 2, 1);
     WeaponType[] warriorWeaponTypes = {AXE, HAMMER, SWORD};
@@ -33,5 +34,6 @@ public interface ICharacterSpecifications {
     enum characters {
         MAGE, RANGER, ROGUE, WARRIOR
     }
+    
 
 }

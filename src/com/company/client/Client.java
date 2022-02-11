@@ -84,6 +84,10 @@ public class Client {
             case "WARRIOR": {
                 return new Warrior();
             }
+            case "RANGER": {
+                return new Ranger();
+            }
+
             default:
                 return null;
         }
@@ -122,6 +126,5 @@ public class Client {
         warrior.levelUp();
         warrior.printStats();
     }
-
 
 }
