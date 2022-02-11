@@ -90,6 +90,9 @@ public class Client {
             case "MAGE":{
                 return new Mage();
             }
+            case "ROGUE":{
+                return new Rogue();
+            }
             default:
                 return null;
         }
