@@ -87,7 +87,9 @@ public class Client {
             case "RANGER": {
                 return new Ranger();
             }
-
+            case "MAGE":{
+                return new Mage();
+            }
             default:
                 return null;
         }
