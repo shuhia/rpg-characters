@@ -1,7 +1,7 @@
 package com.company.game;
 
-import com.company.excpetions.InvalidArmorException;
-import com.company.excpetions.InvalidWeaponException;
+import com.company.exceptions.InvalidArmorException;
+import com.company.exceptions.InvalidWeaponException;
 import com.company.types.ArmorType;
 import com.company.types.Slot;
 import com.company.types.WeaponType;
@@ -28,6 +28,7 @@ public abstract class Character {
         this.levelUpAttributeGain = levelUpAttributeGain;
         this.equipableItems = new ArrayList<>(3);
     }
+
     public Character(String name, Attributes baseAttributes, Attributes levelUpAttributeGain, WeaponType[] weaponTypes, ArmorType[] armorTypes) {
         this.name = name;
         this.baseAttributes = baseAttributes;
@@ -114,10 +115,10 @@ public abstract class Character {
         return weaponDamagePerSecond;
     }
 
-    public double getTotalDamagePerSecond(){
+    public double getTotalDamagePerSecond() {
         double weaponDamagePerSecond = getWeaponDamagePerSecond();
         return weaponDamagePerSecond * getDamageFromAttribute(getTotalPrimaryAttribute());
-    };
+    }
 
 
     protected double getDamageFromAttribute(double attribute) {

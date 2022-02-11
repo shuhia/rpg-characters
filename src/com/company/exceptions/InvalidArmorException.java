@@ -1,4 +1,4 @@
-package com.company.excpetions;
+package com.company.exceptions;
 
 public class InvalidArmorException extends Exception {
     public InvalidArmorException(String message) {
