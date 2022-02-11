@@ -2,7 +2,8 @@ package com.company.game;
 
 import java.util.Collections;
 
-import static com.company.game.CharacterSpecifications.*;
+import static com.company.game.ICharacterSpecifications.*;
+
 
 public class Warrior extends Character {
     public Warrior(String name) {

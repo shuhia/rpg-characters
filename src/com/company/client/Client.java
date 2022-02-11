@@ -2,7 +2,7 @@ package com.company.client;
 
 import com.company.game.Character;
 import com.company.game.*;
-import com.company.game.CharacterSpecifications.characters;
+import com.company.game.ICharacterSpecifications.characters;
 import com.company.types.ArmorType;
 import com.company.types.Slot;
 import com.company.types.WeaponType;
@@ -10,6 +10,7 @@ import com.company.types.WeaponType;
 import java.util.Arrays;
 import java.util.Scanner;
 
+// TODO: Add methods that can call methods in an object with string
 public class Client {
     public Client() {
     }
@@ -47,7 +48,6 @@ public class Client {
                 EQUIP_ITEM,
                 ATTACK,
                 PRINT_STATS,
-                q,
             }
 
             String choice = getAlternative(Arrays.stream(actions.values()).map((value) -> value.name()).toArray()).toString();

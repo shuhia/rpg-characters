@@ -36,9 +36,10 @@ class ItemTest {
     //o Expected DPS = 1*(1 + (5 / 100))
     @Test
     void GetTotalDamagePerSecond_WithLevelOne_ExpectLowDamage() {
-        double lowDamagePerSecond = 1 * (1 + (CharacterSpecifications.warriorBaseAttributes.getStrength() / 100));
+        double lowDamagePerSecond = 1 * (1 + (ICharacterSpecifications.warriorBaseAttributes.getStrength() / 100));
         double totalDamagePerSecond = warrior.getTotalDamagePerSecond();
         assertEquals(lowDamagePerSecond, totalDamagePerSecond);
+
     }
 
     //8) Calculate DPS with valid weapon equipped.
@@ -51,7 +52,7 @@ class ItemTest {
     void GetTotalDamagePerSecond_WithValidWeapon_ExpectMoreDamage() throws Exception {
         Weapon axe = createAxe();
         warrior.equip(axe);
-        var expected = (7 * 1.1) * (1 + (CharacterSpecifications.warriorBaseAttributes.getStrength() / 100));
+        var expected = (7 * 1.1) * (1 + (ICharacterSpecifications.warriorBaseAttributes.getStrength() / 100));
         var acutal = warrior.getTotalDamagePerSecond();
         assertEquals(expected, acutal);
     }
@@ -75,7 +76,7 @@ class ItemTest {
         warrior.equip(axe);
         warrior.equip(armor);
         // • Character DPS = (WeaponDamage+AttacksPerSecond) * (1 + (BasePrimaryAttribute+amount)/100)
-        var expected = (7 * 1.1) * (1 + ((CharacterSpecifications.warriorBaseAttributes.getStrength() + amount) / 100));
+        var expected = (7 * 1.1) * (1 + ((ICharacterSpecifications.warriorBaseAttributes.getStrength() + amount) / 100));
         var actual = warrior.getTotalDamagePerSecond();
         assertEquals(expected, actual);
     }
