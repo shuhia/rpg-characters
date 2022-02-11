@@ -37,7 +37,7 @@ public class Client {
 
 
     public void run() throws Exception {
-
+        ItemFactory itemFactory = new ItemFactory();
         System.out.println("Welcome to RPG Characters");
         System.out.println("Choose a character");
         Character c = getCharacter();
@@ -46,6 +46,7 @@ public class Client {
             enum actions {
                 LEVEL_UP,
                 PRINT_STATS,
+                CREATE_AXE,
             }
 
             String choice = getAlternative(Arrays.stream(actions.values()).map(Enum::name).toArray()).toString();
@@ -56,12 +57,18 @@ public class Client {
                 case "PRINT_STATS" -> {
                     c.printStats();
                 }
+                case "CREATE_AXE" -> {
+                    var axe = itemFactory.createItemOf("WEAPON");
+                    axe.printStats();
+                }
                 default -> {
                     System.out.println("Invalid action");
                 }
             }
         }
     }
+
+
 
     private Character getCharacter() {
         Object[] alternatives = Arrays.stream(characters.values()).map((value) -> value.name()).toArray();
