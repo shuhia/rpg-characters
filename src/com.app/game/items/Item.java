@@ -3,10 +3,10 @@ package com.app.game.items;
 import com.app.types.SlotType;
 
 public abstract class Item {
+    Enum type;
     private String name;
     private int requiredLevel;
     private SlotType slotType;
-    Enum type;
 
     protected Item(String name, int requiredLevel, SlotType slotType, Enum type) {
         this.setName(name);
@@ -25,14 +25,15 @@ public abstract class Item {
         return requiredLevel;
     }
 
+    public void setRequiredLevel(int requiredLevel) {
+        this.requiredLevel = requiredLevel;
+    }
+
     public void printStats() {
-        System.out.println("---------------------------------------");
         System.out.println("name: " + getName());
         System.out.println("requiredLevel: " + getRequiredLevel());
         System.out.println("slot: " + getSlotType());
         System.out.println("type: " + type);
-        System.out.println("---------------------------------------");
-
     }
 
     public String getName() {
@@ -43,10 +44,6 @@ public abstract class Item {
         this.name = name;
     }
 
-    public void setRequiredLevel(int requiredLevel) {
-        this.requiredLevel = requiredLevel;
-    }
-
     public SlotType getSlotType() {
         return slotType;
     }
@@ -54,4 +51,5 @@ public abstract class Item {
     public void setSlotType(SlotType slotType) {
         this.slotType = slotType;
     }
+
 }

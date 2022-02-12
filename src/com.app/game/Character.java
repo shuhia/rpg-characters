@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import static com.app.game.ICharacterSpecifications.warriorArmorTypes;
-import static com.app.game.ICharacterSpecifications.warriorWeaponTypes;
+import static com.app.game.ISpecifications.warriorArmorTypes;
+import static com.app.game.ISpecifications.warriorWeaponTypes;
 
 public abstract class Character {
     public String name;
@@ -23,6 +23,7 @@ public abstract class Character {
     public Attributes levelUpAttributeGain;
     public HashMap<SlotType, Item> equipped;
     public ArrayList<Enum> equipableItems;
+    public ArrayList<Item> inventory;
 
     public Character(String name, Attributes baseAttributes, Attributes levelUpAttributeGain) {
         this.name = name;
@@ -30,6 +31,7 @@ public abstract class Character {
         this.equipped = new HashMap();
         this.levelUpAttributeGain = levelUpAttributeGain;
         this.equipableItems = new ArrayList<>(3);
+        this.inventory = new ArrayList<>(12);
     }
 
     public Character(String name, Attributes baseAttributes, Attributes levelUpAttributeGain, WeaponType[] weaponTypes, ArmorType[] armorTypes) {
@@ -40,6 +42,7 @@ public abstract class Character {
         this.equipableItems = new ArrayList<>(3);
         Collections.addAll(this.equipableItems, warriorWeaponTypes);
         Collections.addAll(this.equipableItems, warriorArmorTypes);
+        this.inventory = new ArrayList<>(12);
     }
 
 
@@ -123,8 +126,15 @@ public abstract class Character {
         return weaponDamagePerSecond * getDamageFromAttribute(getTotalPrimaryAttribute());
     }
 
-
     protected double getDamageFromAttribute(double attribute) {
         return 1 + attribute / 100;
+    }
+
+    public boolean addItem(Item item) {
+        return this.inventory.add(item);
+    }
+
+    public void printItems() {
+
     }
 }

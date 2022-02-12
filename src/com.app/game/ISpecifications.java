@@ -7,7 +7,8 @@ import static com.app.types.ArmorType.*;
 import static com.app.types.WeaponType.*;
 
 
-public interface ICharacterSpecifications {
+public interface ISpecifications {
+
 
     // Mage specifications
     Attributes mageBaseAttributes = new Attributes(1, 1, 8);

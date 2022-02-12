@@ -2,7 +2,7 @@ package com.app.game.characters;
 
 import com.app.game.Character;
 
-import static com.app.game.ICharacterSpecifications.*;
+import static com.app.game.ISpecifications.*;
 
 
 public class Rogue extends Character {

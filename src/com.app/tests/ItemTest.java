@@ -4,7 +4,7 @@ import com.app.exceptions.InvalidArmorException;
 import com.app.exceptions.InvalidWeaponException;
 import com.app.game.Attributes;
 import com.app.game.Character;
-import com.app.game.ICharacterSpecifications;
+import com.app.game.ISpecifications;
 import com.app.game.characters.Warrior;
 import com.app.game.items.Armor;
 import com.app.game.items.Weapon;
@@ -39,8 +39,8 @@ class ItemTest {
     //o Take warrior at level 1
     //o Expected DPS = 1*(1 + (5 / 100))
     @Test
-    void GetTotalDamagePerSecond_WithLevelOne_ExpectLowDamage() {
-        double lowDamagePerSecond = 1 * (1 + (ICharacterSpecifications.warriorBaseAttributes.getStrength() / 100));
+    void GetTotalDamagePerSecond_WithLevelOneCharacter_ExpectLowDamage() {
+        double lowDamagePerSecond = 1 * (1 + (ISpecifications.warriorBaseAttributes.getStrength() / 100));
         double totalDamagePerSecond = warrior.getTotalDamagePerSecond();
         assertEquals(lowDamagePerSecond, totalDamagePerSecond);
 
@@ -56,7 +56,7 @@ class ItemTest {
     void GetTotalDamagePerSecond_WithValidWeapon_ExpectMoreDamage() throws Exception {
         Weapon axe = createAxe();
         warrior.equip(axe);
-        var expected = (7 * 1.1) * (1 + (ICharacterSpecifications.warriorBaseAttributes.getStrength() / 100));
+        var expected = (7 * 1.1) * (1 + (ISpecifications.warriorBaseAttributes.getStrength() / 100));
         var acutal = warrior.getTotalDamagePerSecond();
         assertEquals(expected, acutal);
     }
@@ -76,11 +76,11 @@ class ItemTest {
         var slot = SlotType.BODY;
         var amount = 5;
         var attributes = new Attributes(amount, amount, amount);
-        var armor = new Armor(type, name, requiredLevel, slot, attributes);
+        var armor = new Armor(name, requiredLevel, type, slot, attributes);
         warrior.equip(axe);
         warrior.equip(armor);
         // • Character DPS = (WeaponDamage+AttacksPerSecond) * (1 + (BasePrimaryAttribute+amount)/100)
-        var expected = (7 * 1.1) * (1 + ((ICharacterSpecifications.warriorBaseAttributes.getStrength() + amount) / 100));
+        var expected = (7 * 1.1) * (1 + ((ISpecifications.warriorBaseAttributes.getStrength() + amount) / 100));
         var actual = warrior.getTotalDamagePerSecond();
         assertEquals(expected, actual);
     }
@@ -158,7 +158,7 @@ class ItemTest {
         var type = MAIL;
         var slot = SlotType.BODY;
         var attributes = new Attributes();
-        var item = new Armor(type, name, level, slot, attributes);
+        var item = new Armor(name, level, type, slot, attributes);
         c.equip(item);
     }
 
@@ -182,7 +182,7 @@ class ItemTest {
         var type = CLOTH;
         var slot = SlotType.BODY;
         var attributes = new Attributes();
-        var item = new Armor(type, name, level, slot, attributes);
+        var item = new Armor(name, level, type, slot, attributes);
         c.equip(item);
     }
 
@@ -204,7 +204,7 @@ class ItemTest {
         var type = PLATE;
         var slot = SlotType.BODY;
         var attributes = new Attributes();
-        var item = new Armor(type, name, level, slot, attributes);
+        var item = new Armor(name, level, type, slot, attributes);
         return c.equip(item);
     }
 

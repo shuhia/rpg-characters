@@ -7,7 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.app.game.ICharacterSpecifications.*;
+import static com.app.game.ISpecifications.rangerBaseAttributes;
+import static com.app.game.ISpecifications.rangerGrowthAttributes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RangerTest {

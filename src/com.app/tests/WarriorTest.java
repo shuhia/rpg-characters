@@ -7,8 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.app.game.ICharacterSpecifications.warriorBaseAttributes;
-import static com.app.game.ICharacterSpecifications.warriorGrowthAttributes;
+import static com.app.game.ISpecifications.warriorBaseAttributes;
+import static com.app.game.ISpecifications.warriorGrowthAttributes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WarriorTest {

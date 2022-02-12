@@ -19,7 +19,7 @@ public class ItemFactory {
                 var slot = SlotType.BODY;
                 var amount = 5;
                 var attributes = new Attributes(amount, amount, amount);
-                return new Armor(type, name, requiredLevel, slot, attributes);
+                return new Armor(name, requiredLevel, type, slot, attributes);
             }
             case "WEAPON" -> {
                 var damage = 7;
@@ -30,7 +30,7 @@ public class ItemFactory {
                 return new Weapon(name, requiredLevel, type, damage, attackSpeedPerSecond);
             }
             default -> {
-                throw new InvalidItemException("Specified type: " + itemType.toString() + " does not exist!");
+                throw new InvalidItemException("Specified type: " + itemType + " does not exist!");
             }
         }
     }

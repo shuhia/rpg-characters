@@ -1,6 +1,7 @@
 package com.app.game;
 
 public class Attributes {
+
     double strength;
     double dexterity;
     double intelligence;

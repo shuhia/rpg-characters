@@ -8,8 +8,8 @@ public class Armor extends Item {
 
     Attributes attributes;
 
-    public Armor(ArmorType type, String name, int requiredLevel, SlotType slotType, Attributes attributes) {
-        super(name, requiredLevel, slotType, type);
+    public Armor(String name, int requiredLevel, ArmorType type, SlotType slot, Attributes attributes) {
+        super(name, requiredLevel, slot, type);
         this.attributes = attributes;
     }
 
@@ -19,5 +19,11 @@ public class Armor extends Item {
 
     public Attributes getAttributes() {
         return attributes;
+    }
+
+    @Override
+    public void printStats() {
+        super.printStats();
+        System.out.println(attributes);
     }
 }

@@ -1,8 +1,8 @@
 package com.app.client;
 
+import com.app.game.Attributes;
 import com.app.game.Character;
-import com.app.game.*;
-import com.app.game.ICharacterSpecifications.characters;
+import com.app.game.ISpecifications;
 import com.app.game.characters.Mage;
 import com.app.game.characters.Ranger;
 import com.app.game.characters.Rogue;
@@ -15,14 +15,13 @@ import com.app.types.SlotType;
 import com.app.types.WeaponType;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Scanner;
 
-// TODO: Add methods that can call methods in an object with string
-public class Client {
-    public Client() {
-    }
+public class Client implements IClient {
+    static Scanner scanner = new Scanner(System.in);
 
-    public static String askFor(String message) {
+    public static String askForInputOf(String message) {
         System.out.println(message);
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
@@ -33,9 +32,7 @@ public class Client {
     public void start() {
 
         try {
-
             run();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,54 +41,60 @@ public class Client {
 
 
     public void run() throws Exception {
-        ItemFactory itemFactory = new ItemFactory();
         System.out.println("Welcome to RPG Characters");
-        System.out.println("---------------------------------------");
         System.out.println("Choose a character");
-        Character c = getCharacter();
-        System.out.println("---------------------------------------");
-        var isStarted = true;
-        while (isStarted) {
-            System.out.println("What do you want to do?");
-            enum actions {
-                LEVEL_UP,
-                PRINT_STATS,
-                CREATE_AXE,
-                END_GAME,
-            }
-            String choice = getAlternative(Arrays.stream(actions.values()).map(Enum::name).toArray()).toString();
-            switch (choice) {
+        String characterType = askFor("character type", ISpecifications.characters.values());
+        Character c = createCharacter(characterType);
+        LinkedList<Item> inventory = new LinkedList<Item>();
+        var isPlaying = true;
+        while (isPlaying) {
+            String actionType = askFor("action type", actions.values());
+            switch (actionType) {
                 case "LEVEL_UP" -> {
                     c.levelUp();
+                }
+                case "CREATE_ITEM" -> {
+                    c.addItem(createItem());
+                }
+                case "LIST_INVENTORY" -> {
+                    c.printItems();
                 }
                 case "PRINT_STATS" -> {
                     c.printStats();
                 }
-                case "CREATE_AXE" -> {
-                    var axe = itemFactory.createItemOf("WEAPON");
-                    axe.printStats();
-                }
                 case "END_GAME" -> {
-                    isStarted = false;
+                    isPlaying = false;
                 }
                 default -> {
                     System.out.println("Invalid action");
                 }
             }
-            System.out.println("---------------------------------------");
-
         }
     }
 
-
-    private Character getCharacter() {
-        Object[] alternatives = Arrays.stream(characters.values()).map((value) -> value.name()).toArray();
-        Object alternative = getAlternative(alternatives).toString();
-        Character c = createCharacter(alternative);
-        if (c == null) return getCharacter();
-        else {
-            return c;
-        }
+    private Item createItem() {
+        String[] options = {"WEAPON", "ARMOR"};
+        var itemType = askFor("Item type", options);
+        Item item = null;
+        if (itemType.equals("WEAPON")) {
+            var type = askFor("type", WeaponType.values());
+            var name = askFor("name");
+            var requiredLevel = askForValue("required level");
+            var slot = askFor("slot type", SlotType.values());
+            var attackSpeedPerSecond = askForValue("attackspeed per second");
+            var damage = askForValue("damage");
+            item = new Weapon(name, requiredLevel, WeaponType.valueOf(type), SlotType.valueOf(slot), damage, attackSpeedPerSecond);
+        } else if (itemType.equals("ARMOR")) {
+            var type = askFor("type", ArmorType.values());
+            var name = askFor("name");
+            var requiredLevel = askForValue("required level");
+            var slot = askFor("slot type", SlotType.values());
+            var attributes = askForAttributes();
+            item = new Armor(name, requiredLevel, ArmorType.valueOf(type), SlotType.valueOf(slot), attributes);
+        } else return null;
+        System.out.println("created item");
+        item.printStats();
+        return item;
     }
 
     public Character createCharacter(Object type) throws IllegalArgumentException {
@@ -110,42 +113,99 @@ public class Client {
                 return new Rogue();
             }
             default:
+                System.out.println("invalid type");
                 return null;
         }
 
     }
 
-    public Object getAlternative(Object[] alternatives) {
-        printAlternatives(alternatives);
-        try {
-            Scanner scan = new Scanner(System.in);
-            String input = scan.next();
-            int choice = Integer.parseInt(input) - 1;
-            final Object alternative = alternatives[choice];
-            System.out.println("Your choice: " + alternative.toString());
-            return alternative;
-        } catch (Exception e) {
-            System.out.println("Please try again");
-            return getAlternative(alternatives);
-        }
+    public Attributes askForAttributes() {
+        var attributes = new Attributes();
+        attributes.setStrength(askForValue("strength"));
+        attributes.setDexterity(askForValue("dexterity"));
+        attributes.setIntelligence(askForValue("intelligence"));
+        return attributes;
     }
 
-    public void printAlternatives(Object[] alternatives) {
-        for (int i = 1; i <= alternatives.length; i++) {
-            System.out.println(i + "." + alternatives[i - 1]);
-        }
+    public Integer askForValue(String something) {
+        return askForValue(something, 0);
     }
 
-    public void testGame() throws Exception {
-        Character warrior = new Warrior("Warrior");
-        Item bodyArmor = new Armor(ArmorType.PLATE, "Iron Chest Plate", 1, SlotType.BODY, new Attributes(10, 10, 10));
-        Item weapon = new Weapon("Axe", 1, WeaponType.AXE, 10, 1);
-        warrior.equip(bodyArmor);
-        warrior.equip(weapon);
-        warrior.equip(weapon);
-        warrior.printStats();
-        warrior.levelUp();
-        warrior.printStats();
+    public Integer askForValue(String something, int min) {
+
+        int number = -1;
+        while (number < min) {
+            System.out.println("Please enter a value for " + something);
+            try {
+                var string = scanner.nextLine();
+                number = Integer.parseInt(string);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a number!");
+            }
+        }
+        System.out.println("Set " + something + "to " + number);
+        return number;
+    }
+
+    public String askFor(String something) {
+        System.out.println("Please enter a " + something);
+        var string = scanner.nextLine().trim();
+        while (string.isBlank()) {
+            System.out.println("Empty string is not allowed!");
+            string = scanner.nextLine().trim();
+        }
+        return string;
+    }
+
+    public String askFor(String something, Enum[] options) {
+        // Convert enum to string
+        String[] strings = Arrays.stream(options).map(Enum::name).toArray(String[]::new);
+        return askFor(something, strings);
+    }
+
+    @Override
+    public String askFor(String something, String[] options) {
+        int choice = -1;
+        var string = "";
+        String option = "";
+        final int length = options.length;
+        while (choice < 0 || choice >= length) {
+            try {
+                System.out.println("please choose a " + something + "?");
+                printOptions(options);
+                string = scanner.nextLine();
+                choice = Integer.parseInt(string) - 1;
+
+            } catch (Exception e) {
+                if (e instanceof NumberFormatException) System.out.println("Please enter a number");
+                else if (e instanceof ArrayIndexOutOfBoundsException)
+                    System.out.println("Please enter a valid number from: 1 to " + length);
+                else e.printStackTrace();
+            }
+        }
+        option = options[choice];
+        printSelectedOption(option);
+        return option;
+    }
+
+    @Override
+    public String printOptions(String[] options) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int index = 1; index <= options.length; index++) {
+            stringBuilder.append(index).append(".").append(options[index - 1]).append("\n");
+        }
+        // Remove excess space
+        var response = stringBuilder.toString().trim();
+        System.out.println(response);
+
+        return response;
+    }
+
+    @Override
+    public String printSelectedOption(String option) {
+        var response = "You choice: " + option;
+        System.out.println(response);
+        return response;
     }
 
 }
