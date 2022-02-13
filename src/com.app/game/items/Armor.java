@@ -1,6 +1,7 @@
 package com.app.game.items;
 
 import com.app.game.Attributes;
+import com.app.game.items.exceptions.InvalidArmorException;
 import com.app.types.ArmorType;
 import com.app.types.SlotType;
 
@@ -25,5 +26,10 @@ public class Armor extends Item {
     public void printStats() {
         super.printStats();
         System.out.println(attributes);
+    }
+
+    @Override
+    public void throwInvalid(String message) throws Exception {
+        throw new InvalidArmorException("armor " + message);
     }
 }

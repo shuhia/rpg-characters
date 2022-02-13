@@ -1,9 +1,9 @@
 package com.app.game;
 
-import com.app.exceptions.InvalidItemException;
 import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
+import com.app.game.items.exceptions.InvalidItemException;
 import com.app.types.SlotType;
 
 import static com.app.types.ArmorType.PLATE;
