@@ -1,10 +1,10 @@
 package com.app.game;
 
-import com.app.exceptions.InvalidArmorException;
-import com.app.exceptions.InvalidWeaponException;
 import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
+import com.app.game.items.exceptions.InvalidArmorException;
+import com.app.game.items.exceptions.InvalidWeaponException;
 import com.app.types.ArmorType;
 import com.app.types.SlotType;
 import com.app.types.WeaponType;
@@ -60,31 +60,13 @@ public abstract class Character {
     }
 
     public boolean equip(Item item) throws Exception {
-        if (this.level >= item.getRequiredLevel()) {
-            if (item instanceof Weapon)
-                if (this.equipableItems.stream().anyMatch((type) -> type == item.getType())) {
-                    this.equipped.put(item.getSlot(), item);
-                } else {
-                    // Throw InvalidWeaponException
-                    throw new InvalidWeaponException("Weapon of type " + item.getType() + " is not allowed for a " + this.getClass().getSimpleName());
-                }
-            else if (item instanceof Armor) {
-                if (this.equipableItems.stream().anyMatch((type) -> type == item.getType())) {
-                    this.equipped.put(item.getSlot(), item);
-                } else {
-                    // Throw InvalidArmorException
-                    throw new InvalidArmorException("Armor of type " + item.getType() + " is not allowed for a " + this.getClass().getSimpleName());
-                }
-            }
-        } else {
-            // Throw InvalidWeaponException
-            if (item instanceof Weapon)
-                throw new InvalidWeaponException("Character does not meet the required level: " + item.getRequiredLevel());
-            // Throw InvalidArmorException
-            if (item instanceof Armor)
-                throw new InvalidArmorException("Character does not meet the required level: " + item.getRequiredLevel());
-
+        if(this.level < item.getRequiredLevel()){
+            item.throwInvalid("requires level: "+item.getRequiredLevel());
         }
+        if (!this.equipableItems.stream().anyMatch((type) -> type == item.getType())) {
+            item.throwInvalid("type:" + item.getType()+ " Cannot be equipped by "+this.getClass().getSimpleName());
+        }
+        this.equipped.put(item.getSlot(), item);
         return true;
     }
 

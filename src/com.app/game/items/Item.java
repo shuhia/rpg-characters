@@ -51,5 +51,5 @@ public abstract class Item {
     public void setSlotType(SlotType slotType) {
         this.slotType = slotType;
     }
-
+    public abstract void throwInvalid(String message) throws Exception;
 }

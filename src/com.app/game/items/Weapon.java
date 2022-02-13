@@ -1,5 +1,6 @@
 package com.app.game.items;
 
+import com.app.game.items.exceptions.InvalidWeaponException;
 import com.app.types.SlotType;
 import com.app.types.WeaponType;
 
@@ -32,5 +33,10 @@ public class Weapon extends Item {
         super.printStats();
         System.out.println("damage: " + damage);
         System.out.println("attack speed" + attackSpeedPerSecond);
+    }
+
+    @Override
+    public void throwInvalid(String message) throws Exception {
+        throw new InvalidWeaponException("Weapon " +message);
     }
 }

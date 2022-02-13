@@ -1,13 +1,13 @@
 package com.app.tests;
 
-import com.app.exceptions.InvalidArmorException;
-import com.app.exceptions.InvalidWeaponException;
 import com.app.game.Attributes;
 import com.app.game.Character;
 import com.app.game.ISpecifications;
 import com.app.game.characters.Warrior;
 import com.app.game.items.Armor;
 import com.app.game.items.Weapon;
+import com.app.game.items.exceptions.InvalidArmorException;
+import com.app.game.items.exceptions.InvalidWeaponException;
 import com.app.types.SlotType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
