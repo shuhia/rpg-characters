@@ -1,13 +1,12 @@
 package com.app.game;
 
-import com.app.exceptions.InvalidItemException;
+import com.app.game.exceptions.InvalidItemException;
 import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
+import com.app.types.ArmorType;
 import com.app.types.SlotType;
-
-import static com.app.types.ArmorType.PLATE;
-import static com.app.types.WeaponType.AXE;
+import com.app.types.WeaponType;
 
 public class ItemFactory {
     public Item createItemOf(String itemType) throws InvalidItemException {
@@ -15,24 +14,29 @@ public class ItemFactory {
             case "ARMOR" -> {
                 var name = "armor";
                 var requiredLevel = 1;
-                var type = PLATE;
+                var type = getRandomElement(ArmorType.values());
                 var slot = SlotType.BODY;
-                var amount = 5;
+                var amount = Math.random() * 100;
                 var attributes = new Attributes(amount, amount, amount);
                 return new Armor(name, requiredLevel, type, slot, attributes);
             }
             case "WEAPON" -> {
-                var damage = 7;
-                var attackSpeedPerSecond = 1.1;
+                var damage = Math.random() * 100;
+                var attackSpeedPerSecond = Math.random() * 2;
                 String name = "AXE";
                 int requiredLevel = 1;
-                var type = AXE;
+                var type = getRandomElement(WeaponType.values());
+
                 return new Weapon(name, requiredLevel, type, damage, attackSpeedPerSecond);
             }
             default -> {
                 throw new InvalidItemException("Specified type: " + itemType + " does not exist!");
             }
         }
+    }
+
+    private <E> E getRandomElement(E[] values) {
+        return values[(int) Math.floor(Math.random() * values.length)];
     }
 
 
