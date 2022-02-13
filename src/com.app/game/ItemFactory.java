@@ -10,7 +10,7 @@ import com.app.types.WeaponType;
 
 public class ItemFactory {
     public Item createItemOf(String itemType) throws InvalidItemException {
-        switch (itemType) {
+        switch (itemType.toUpperCase()) {
             case "ARMOR" -> {
                 var name = "armor";
                 var requiredLevel = 1;
@@ -29,9 +29,8 @@ public class ItemFactory {
 
                 return new Weapon(name, requiredLevel, type, damage, attackSpeedPerSecond);
             }
-            default -> {
-                throw new InvalidItemException("Specified type: " + itemType + " does not exist!");
-            }
+            default -> throw new InvalidItemException("Specified type: " + itemType + " does not exist!");
+
         }
     }
 

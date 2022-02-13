@@ -9,15 +9,30 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ItemFactoryTest {
     @Test
-    void createItemOf() {
+    void createItemOfWeapon_ExpectTypeWeapon() {
         var factory = new ItemFactory();
         Item item = null;
         try {
             item = factory.createItemOf("WEAPON");
+            System.out.println(item.toString());
         } catch (InvalidItemException e) {
             e.printStackTrace();
         }
-        System.out.println(item.toString());
+
+        assertTrue(item instanceof Weapon);
+    }
+
+    @Test
+    void createItemOfArmor_ExpectTypeArmor() {
+        var factory = new ItemFactory();
+        Item item = null;
+        try {
+            item = factory.createItemOf("ARMOR");
+            System.out.println(item.toString());
+        } catch (InvalidItemException e) {
+            e.printStackTrace();
+        }
+
         assertTrue(item instanceof Weapon);
     }
 }
