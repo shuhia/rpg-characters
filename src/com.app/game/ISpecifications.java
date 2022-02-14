@@ -6,9 +6,12 @@ import com.app.types.WeaponType;
 import static com.app.types.ArmorType.*;
 import static com.app.types.WeaponType.*;
 
-
+/**
+ * This interface contains character specifications. It consists of base, growth and item types constants.
+ */
 public interface ISpecifications {
-
+    // Base attributes are attributes that character starts with
+    // Growth are attributes gets added to total attributes each time a character levels up.
 
     // Mage specifications
     Attributes mageBaseAttributes = new Attributes(1, 1, 8);

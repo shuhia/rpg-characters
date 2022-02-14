@@ -12,6 +12,7 @@ public interface IClient {
         PRINT_STATS,
         CREATE_ITEM,
         LIST_INVENTORY,
+        RESTART_GAME,
         END_GAME,
     }
 }
