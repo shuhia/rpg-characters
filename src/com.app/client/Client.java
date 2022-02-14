@@ -41,34 +41,44 @@ public class Client implements IClient {
 
 
     public void run() throws Exception {
-        System.out.println("Welcome to RPG Characters");
-        String characterType = askFor("character type", ISpecifications.characters.values());
-        Character character = createCharacter(characterType);
-        LinkedList<Item> inventory = new LinkedList<Item>();
-        var isPlaying = true;
-        while (isPlaying) {
-            String actionType = askFor("action type", actions.values());
-            switch (actionType) {
-                case "LEVEL_UP" -> {
-                    character.levelUp();
-                }
-                case "CREATE_ITEM" -> {
-                    character.addItem(createItem());
-                }
-                case "LIST_INVENTORY" -> {
-                    character.printItems();
-                }
-                case "PRINT_STATS" -> {
-                    character.printStats();
-                }
-                case "END_GAME" -> {
-                    isPlaying = false;
-                }
-                default -> {
-                    System.out.println("Invalid action");
+        var restartGame = false;
+        do {
+            System.out.println("Welcome to RPG Characters");
+            String characterType = askFor("character type", ISpecifications.characters.values());
+            Character character = createCharacter(characterType);
+            LinkedList<Item> inventory = new LinkedList<Item>();
+            var isPlaying = true;
+            while (isPlaying) {
+                String actionType = askFor("action type", actions.values());
+                switch (actionType) {
+                    case "LEVEL_UP" -> {
+                        character.levelUp();
+                    }
+                    case "CREATE_ITEM" -> {
+                        character.addItem(createItem());
+                    }
+                    case "LIST_INVENTORY" -> {
+                        character.printItems();
+                    }
+                    case "PRINT_STATS" -> {
+                        character.printStats();
+                    }
+                    case "RESTART_GAME" -> {
+                        isPlaying = false;
+                        restartGame = true;
+                    }
+                    case "END_GAME" -> {
+                        isPlaying = false;
+                        restartGame = false;
+                    }
+
+                    default -> {
+                        System.out.println("Invalid action");
+                    }
                 }
             }
         }
+        while(restartGame);
     }
 
     private Item createItem() {
