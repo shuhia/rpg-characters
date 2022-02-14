@@ -1,17 +1,3 @@
-# Summary
-
-This application implements RPG Character game on a command line.
-
-The user is able to select a character and perform various actions. Actions like levelup and create an item.
-
-## Dependencies
-
-Java JDK 17.0.1 JUnit 5 for testing
-
-## How to use
-
-Start the game by running the Main class in editor.
-
 ## Author
 
 Alex On
@@ -55,6 +41,12 @@ Alex On
   </p>
 </div>
 
+<figure>
+<img src="./class-diagram.png" alt="Class diagram" />
+<figcaption>
+Class diagram 
+</figcaption>
+</figure>
 
 
 <!-- TABLE OF CONTENTS -->
@@ -89,6 +81,10 @@ Alex On
 
 This project is part of an assignment in the Java fullstack course and covers how to create a java command line
 application.
+
+The application implements RPG Character game on a command line.
+
+The user is able to select a character and perform various actions. Actions like levelup and create an item.
 
 ### This application implements the following features
 
@@ -164,11 +160,9 @@ After starting main follow the instructions from the command line.
 - [x] Add items
 - [x] Add unit tests for items
 - [x] Add unit tests for characters
-
-See the [open issues](https://github.com/shuhia/rpg-characters/issues) for a full list of proposed features (
-and known issues).
-
-
+- [x] Generate class diagram with IntelliJ
+- [ ] Document all classes thoroughly
+- [ ] Hand in assignment
 
 <!-- CONTACT -->
 
@@ -180,7 +174,8 @@ Project Link: [https://github.com/shuhia/rpg-characters](https://github.com/shuh
 
 ## Acknowledgments
 
-Noroff LMS provided assignment: [link to pdf](./Assignment 1_Java_RPGCharacters.pdf)
+I want to thank Noroff LMS for providing me with the project
+specification: [link to pdf](./Assignment 1_Java_RPGCharacters.pdf)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
