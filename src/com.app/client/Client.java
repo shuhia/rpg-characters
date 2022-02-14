@@ -42,25 +42,24 @@ public class Client implements IClient {
 
     public void run() throws Exception {
         System.out.println("Welcome to RPG Characters");
-        System.out.println("Choose a character");
         String characterType = askFor("character type", ISpecifications.characters.values());
-        Character c = createCharacter(characterType);
+        Character character = createCharacter(characterType);
         LinkedList<Item> inventory = new LinkedList<Item>();
         var isPlaying = true;
         while (isPlaying) {
             String actionType = askFor("action type", actions.values());
             switch (actionType) {
                 case "LEVEL_UP" -> {
-                    c.levelUp();
+                    character.levelUp();
                 }
                 case "CREATE_ITEM" -> {
-                    c.addItem(createItem());
+                    character.addItem(createItem());
                 }
                 case "LIST_INVENTORY" -> {
-                    c.printItems();
+                    character.printItems();
                 }
                 case "PRINT_STATS" -> {
-                    c.printStats();
+                    character.printStats();
                 }
                 case "END_GAME" -> {
                     isPlaying = false;
@@ -143,7 +142,7 @@ public class Client implements IClient {
                 System.out.println("Please enter a number!");
             }
         }
-        System.out.println("Set " + something + "to " + number);
+        System.out.println("Set " + something + " to " + number);
         return number;
     }
 
@@ -171,7 +170,7 @@ public class Client implements IClient {
         final int length = options.length;
         while (choice < 0 || choice >= length) {
             try {
-                System.out.println("please choose a " + something + "?");
+                System.out.println("Please choose " + something + ".");
                 printOptions(options);
                 string = scanner.nextLine();
                 choice = Integer.parseInt(string) - 1;
