@@ -35,7 +35,7 @@ Alex On
 
 
   <p align="center">
-    RPG Characters
+    RPG Characters start screen
     <br />
     <a href="">View Demo</a>
   </p>
@@ -43,7 +43,7 @@ Alex On
 
 <figure>
 <img src="./class-diagram.png" alt="Class diagram" />
-<figcaption>
+<figcaption style="text-align:center">
 Class diagram 
 </figcaption>
 </figure>
