@@ -56,7 +56,7 @@ public abstract class Character {
 
     public int levelUp() {
         this.level++;
-        return this.level;
+        return this.level
     }
 
     public boolean equip(Item item) throws Exception {
