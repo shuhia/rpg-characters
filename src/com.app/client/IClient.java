@@ -11,6 +11,7 @@ public interface IClient {
         LEVEL_UP,
         PRINT_STATS,
         CREATE_ITEM,
+        CREATE_ITEM_WITH_FACTORY,
         LIST_INVENTORY,
         RESTART_GAME,
         END_GAME,

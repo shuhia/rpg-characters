@@ -3,6 +3,7 @@ package com.app.client;
 import com.app.game.Attributes;
 import com.app.game.Character;
 import com.app.game.ISpecifications;
+import com.app.game.ItemFactory;
 import com.app.game.characters.Mage;
 import com.app.game.characters.Ranger;
 import com.app.game.characters.Rogue;
@@ -43,6 +44,7 @@ public class Client implements IClient {
     public void run() throws Exception {
         var restartGame = false;
         do {
+            var itemFactory = new ItemFactory();
             System.out.println("Welcome to RPG Characters");
             String characterType = askFor("character type", ISpecifications.characters.values());
             Character character = createCharacter(characterType);
@@ -59,6 +61,10 @@ public class Client implements IClient {
                     }
                     case "LIST_INVENTORY" -> {
                         character.printItems();
+                    }
+                    case "CREATE_ITEM_WITH_FACTORY"->{
+                        var item = itemFactory.createItemOf(askFor("item type", new String[]{"WEAPON", "ARMOR"}));
+                        item.printStats();
                     }
                     case "PRINT_STATS" -> {
                         character.printStats();
