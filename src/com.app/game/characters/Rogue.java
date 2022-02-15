@@ -5,7 +5,7 @@ import com.app.game.Character;
 import static com.app.game.ISpecifications.*;
 
 
-public class Rogue extends Character {
+public class Rogue extends Character implements RogueSpec {
 
     public Rogue(String name) {
         super(name, rogueBaseAttributes, rogueGrowthAttributes, rogueWeaponTypes, rogueArmorTypes);

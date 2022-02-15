@@ -5,7 +5,7 @@ import com.app.game.Character;
 import static com.app.game.ISpecifications.*;
 
 
-public class Mage extends Character {
+public class Mage extends Character implements MageSpec{
 
     public Mage(String name) {
         super(name, mageBaseAttributes, mageGrowthAttributes, mageWeaponTypes, mageArmorTypes);

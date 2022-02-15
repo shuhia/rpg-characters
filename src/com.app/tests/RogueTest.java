@@ -2,16 +2,15 @@ package com.app.tests;
 
 import com.app.game.Attributes;
 import com.app.game.Character;
+import com.app.game.ISpecifications;
 import com.app.game.characters.Rogue;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.app.game.ISpecifications.rogueBaseAttributes;
-import static com.app.game.ISpecifications.rogueGrowthAttributes;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RogueTest {
+class RogueTest implements ISpecifications.RogueSpec {
     Character character;
     Attributes baseAttributes;
     Attributes growthAttributes;

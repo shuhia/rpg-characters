@@ -7,12 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ClientTest {
     Client client = new Client();
 
-
-    @Test
-    void askFor() {
-
-    }
-
     @Test
     void printOptions() {
         String[] options = {"option"};

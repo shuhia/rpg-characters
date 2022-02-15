@@ -2,16 +2,16 @@ package com.app.tests;
 
 import com.app.game.Attributes;
 import com.app.game.Character;
+import com.app.game.ISpecifications;
 import com.app.game.characters.Warrior;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.app.game.ISpecifications.warriorBaseAttributes;
-import static com.app.game.ISpecifications.warriorGrowthAttributes;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class WarriorTest {
+class WarriorTest implements ISpecifications.WarriorSpec {
     Character character;
     Attributes baseAttributes;
     Attributes growthAttributes;

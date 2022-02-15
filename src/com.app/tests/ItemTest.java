@@ -18,7 +18,7 @@ import static com.app.game.enums.WeaponType.AXE;
 import static com.app.game.enums.WeaponType.STAFF;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ItemTest {
+class ItemTest implements ISpecifications.WarriorSpec {
     //1) If a character tries to equip a high level weapon, InvalidWeaponException should be thrown.
     //o Use the warrior, and the axe, but set the axes level to 2.
 
@@ -40,7 +40,8 @@ class ItemTest {
     //o Expected DPS = 1*(1 + (5 / 100))
     @Test
     void GetTotalDamagePerSecond_WithLevelOneCharacter_ExpectLowDamage() {
-        double lowDamagePerSecond = 1 * (1 + (ISpecifications.warriorBaseAttributes.getStrength() / 100));
+        double lowDamagePerSecond = 1 * (1 + (
+                warriorBaseAttributes.getStrength() / 100));
         double totalDamagePerSecond = warrior.getTotalDamagePerSecond();
         assertEquals(lowDamagePerSecond, totalDamagePerSecond);
 
@@ -56,7 +57,7 @@ class ItemTest {
     void GetTotalDamagePerSecond_WithValidWeapon_ExpectMoreDamage() throws Exception {
         Weapon axe = createAxe();
         warrior.equip(axe);
-        var expected = (7 * 1.1) * (1 + (ISpecifications.warriorBaseAttributes.getStrength() / 100));
+        var expected = (7 * 1.1) * (1 + (warriorBaseAttributes.getStrength() / 100));
         var acutal = warrior.getTotalDamagePerSecond();
         assertEquals(expected, acutal);
     }
@@ -80,7 +81,7 @@ class ItemTest {
         warrior.equip(axe);
         warrior.equip(armor);
         // • Character DPS = (WeaponDamage+AttacksPerSecond) * (1 + (BasePrimaryAttribute+amount)/100)
-        var expected = (7 * 1.1) * (1 + ((ISpecifications.warriorBaseAttributes.getStrength() + amount) / 100));
+        var expected = (7 * 1.1) * (1 + ((warriorBaseAttributes.getStrength() + amount) / 100));
         var actual = warrior.getTotalDamagePerSecond();
         assertEquals(expected, actual);
     }

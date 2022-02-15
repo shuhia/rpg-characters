@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import static com.app.game.ISpecifications.warriorArmorTypes;
-import static com.app.game.ISpecifications.warriorWeaponTypes;
 
 public abstract class Character {
     public String name;
@@ -20,7 +18,7 @@ public abstract class Character {
     public Attributes baseAttributes;
     public Attributes levelUpAttributeGain;
     public HashMap<SlotType, Item> equipped;
-    public ArrayList<Enum> equipableItems;
+    public ArrayList<Enum<?>> equipableItems;
     public ArrayList<Item> inventory;
 
     public Character(String name, Attributes baseAttributes, Attributes levelUpAttributeGain) {
@@ -38,8 +36,8 @@ public abstract class Character {
         this.equipped = new HashMap();
         this.levelUpAttributeGain = levelUpAttributeGain;
         this.equipableItems = new ArrayList<>(3);
-        Collections.addAll(this.equipableItems, warriorWeaponTypes);
-        Collections.addAll(this.equipableItems, warriorArmorTypes);
+        Collections.addAll(this.equipableItems, weaponTypes);
+        Collections.addAll(this.equipableItems, armorTypes);
         this.inventory = new ArrayList<>(12);
     }
 

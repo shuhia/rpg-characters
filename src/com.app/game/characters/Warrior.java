@@ -5,7 +5,7 @@ import com.app.game.Character;
 import static com.app.game.ISpecifications.*;
 
 
-public class Warrior extends Character {
+public class Warrior extends Character implements WarriorSpec{
 
     public Warrior(String name) {
         super(name, warriorBaseAttributes, warriorGrowthAttributes, warriorWeaponTypes, warriorArmorTypes);

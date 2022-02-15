@@ -5,7 +5,7 @@ import com.app.game.Character;
 import static com.app.game.ISpecifications.*;
 
 
-public class Ranger extends Character {
+public class Ranger extends Character implements RangerSpec {
 
     public Ranger(String name) {
         super(name, rangerBaseAttributes, rangerGrowthAttributes, rangerWeaponTypes, rangerArmorTypes);

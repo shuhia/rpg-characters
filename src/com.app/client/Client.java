@@ -88,13 +88,12 @@ public class Client implements IClient {
     }
 
 
-
     private Item visitItemShop() {
         // Ask visitor for item type
         String[] options = {"WEAPON", "ARMOR"};
         var itemType = askFor("Item type", options);
         Item item;
-        switch(itemType){
+        switch (itemType) {
             case "WEAPON" -> {
                 item = visitWeaponSection();
             }
