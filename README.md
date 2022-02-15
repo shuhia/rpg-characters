@@ -138,9 +138,8 @@ After starting main follow the instructions from the command line.
 - [x] Add unit tests for items
 - [x] Add unit tests for characters
 - [x] Generate class diagram with IntelliJ
-- [ ] Document all classes thoroughly
-- [ ] host a live version on for example: Replit.
-- [ ] Hand in assignment
+- [x] Document all classes thoroughly
+- [x] Hand in assignment
 
 <!-- CONTACT -->
 
