@@ -47,7 +47,7 @@ public class Client implements IClient {
             var itemFactory = new ItemFactory();
             System.out.println("Welcome to RPG Characters");
             String characterType = askFor("character type", ISpecifications.characters.values());
-            Character character = createCharacter(characterType);
+            Character character = visitCharacterShop(characterType);
             LinkedList<Item> inventory = new LinkedList<Item>();
             var isPlaying = true;
             while (isPlaying) {
@@ -57,7 +57,7 @@ public class Client implements IClient {
                         character.levelUp();
                     }
                     case "CREATE_ITEM" -> {
-                        character.addItem(createItem());
+                        character.addItem(visitItemShop());
                     }
                     case "LIST_INVENTORY" -> {
                         character.printItems();
@@ -87,49 +87,71 @@ public class Client implements IClient {
         while (restartGame);
     }
 
-    private Item createItem() {
+
+
+    private Item visitItemShop() {
+        // Ask visitor for item type
         String[] options = {"WEAPON", "ARMOR"};
         var itemType = askFor("Item type", options);
-        Item item = null;
-        if (itemType.equals("WEAPON")) {
-            var type = askFor("type", WeaponType.values());
-            var name = askFor("name");
-            var requiredLevel = askForValue("required level");
-            var slot = askFor("slot type", new Enum[]{SlotType.WEAPON});
-            var attackSpeedPerSecond = askForValue("attackspeed per second");
-            var damage = askForValue("damage");
-            item = new Weapon(name, requiredLevel, WeaponType.valueOf(type), SlotType.valueOf(slot), damage, attackSpeedPerSecond);
-        } else if (itemType.equals("ARMOR")) {
-            var type = askFor("type", ArmorType.values());
-            var name = askFor("name");
-            var requiredLevel = askForValue("required level");
-            var slot = askFor("slot type", SlotType.values());
-            var attributes = askForAttributes();
-            item = new Armor(name, requiredLevel, ArmorType.valueOf(type), SlotType.valueOf(slot), attributes);
-        } else return null;
-        System.out.println("created item");
+        Item item;
+        switch(itemType){
+            case "WEAPON" -> {
+                item = visitWeaponSection();
+            }
+            case "ARMOR" -> {
+                item = visitArmorSection();
+            }
+            default -> {
+                return null;
+            }
+        }
+        System.out.println("Received a new item with following spec:");
         item.printStats();
         return item;
     }
 
-    public Character createCharacter(Object type) throws IllegalArgumentException {
+    private Item visitArmorSection() {
+        Item item;
+        var type = askFor("type", ArmorType.values());
+        var name = askFor("name");
+        var requiredLevel = askForValue("required level");
+        var slot = askFor("slot type", SlotType.values());
+        var attributes = askForAttributes();
+        item = new Armor(name, requiredLevel, ArmorType.valueOf(type), SlotType.valueOf(slot), attributes);
+        return item;
+    }
+
+    private Item visitWeaponSection() {
+        Item item;
+        var type = askFor("type", WeaponType.values());
+        var name = askFor("name");
+        var requiredLevel = askForValue("required level");
+        var slot = askFor("slot type", new Enum[]{SlotType.WEAPON});
+        var attackSpeedPerSecond = askForValue("attackspeed per second");
+        var damage = askForValue("damage");
+        item = new Weapon(name, requiredLevel, WeaponType.valueOf(type), SlotType.valueOf(slot), damage, attackSpeedPerSecond);
+        return item;
+    }
+
+    public Character visitCharacterShop(Object type) throws IllegalArgumentException {
         System.out.println(type.toString());
         switch (type.toString()) {
-            case "WARRIOR": {
+            case "WARRIOR" -> {
                 return new Warrior();
             }
-            case "RANGER": {
+            case "RANGER" -> {
                 return new Ranger();
             }
-            case "MAGE": {
+            case "MAGE" -> {
                 return new Mage();
             }
-            case "ROGUE": {
+            case "ROGUE" -> {
                 return new Rogue();
             }
-            default:
+            default -> {
                 System.out.println("invalid type");
                 return null;
+            }
         }
 
     }
@@ -172,7 +194,7 @@ public class Client implements IClient {
         return string;
     }
 
-    public String askFor(String something, Enum[] options) {
+    public String askFor(String something, Enum<?>[] options) {
         // Convert enum to string
         String[] strings = Arrays.stream(options).map(Enum::name).toArray(String[]::new);
         return askFor(something, strings);
