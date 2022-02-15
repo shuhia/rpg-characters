@@ -1,8 +1,8 @@
 package com.app.game;
 
+import com.app.game.exceptions.InvalidItemException;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
-import com.app.game.items.exceptions.InvalidItemException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

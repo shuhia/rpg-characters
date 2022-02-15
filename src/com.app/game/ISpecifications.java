@@ -1,10 +1,10 @@
 package com.app.game;
 
-import com.app.types.ArmorType;
-import com.app.types.WeaponType;
+import com.app.game.enums.ArmorType;
+import com.app.game.enums.WeaponType;
 
-import static com.app.types.ArmorType.*;
-import static com.app.types.WeaponType.*;
+import static com.app.game.enums.ArmorType.*;
+import static com.app.game.enums.WeaponType.*;
 
 /**
  * This interface contains character specifications. It consists of base, growth and item types constants.

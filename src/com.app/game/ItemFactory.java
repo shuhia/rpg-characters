@@ -1,12 +1,12 @@
 package com.app.game;
 
+import com.app.game.enums.ArmorType;
+import com.app.game.enums.SlotType;
+import com.app.game.enums.WeaponType;
+import com.app.game.exceptions.InvalidItemException;
 import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
-import com.app.game.items.exceptions.InvalidItemException;
-import com.app.types.ArmorType;
-import com.app.types.SlotType;
-import com.app.types.WeaponType;
 
 public class ItemFactory {
     public Item createItemOf(String itemType) throws InvalidItemException {

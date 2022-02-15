@@ -8,12 +8,12 @@ import com.app.game.characters.Mage;
 import com.app.game.characters.Ranger;
 import com.app.game.characters.Rogue;
 import com.app.game.characters.Warrior;
+import com.app.game.enums.ArmorType;
+import com.app.game.enums.SlotType;
+import com.app.game.enums.WeaponType;
 import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
-import com.app.types.ArmorType;
-import com.app.types.SlotType;
-import com.app.types.WeaponType;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -62,7 +62,7 @@ public class Client implements IClient {
                     case "LIST_INVENTORY" -> {
                         character.printItems();
                     }
-                    case "CREATE_ITEM_WITH_FACTORY"->{
+                    case "CREATE_ITEM_WITH_FACTORY" -> {
                         var item = itemFactory.createItemOf(askFor("item type", new String[]{"WEAPON", "ARMOR"}));
                         item.printStats();
                     }
@@ -84,7 +84,7 @@ public class Client implements IClient {
                 }
             }
         }
-        while(restartGame);
+        while (restartGame);
     }
 
     private Item createItem() {

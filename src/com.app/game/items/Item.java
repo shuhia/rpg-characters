@@ -1,6 +1,6 @@
 package com.app.game.items;
 
-import com.app.types.SlotType;
+import com.app.game.enums.SlotType;
 
 public abstract class Item {
     Enum type;
@@ -51,5 +51,6 @@ public abstract class Item {
     public void setSlotType(SlotType slotType) {
         this.slotType = slotType;
     }
+
     public abstract void throwInvalid(String message) throws Exception;
 }

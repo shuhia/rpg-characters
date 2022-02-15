@@ -4,18 +4,18 @@ import com.app.game.Attributes;
 import com.app.game.Character;
 import com.app.game.ISpecifications;
 import com.app.game.characters.Warrior;
+import com.app.game.enums.SlotType;
+import com.app.game.exceptions.InvalidArmorException;
+import com.app.game.exceptions.InvalidWeaponException;
 import com.app.game.items.Armor;
 import com.app.game.items.Weapon;
-import com.app.game.items.exceptions.InvalidArmorException;
-import com.app.game.items.exceptions.InvalidWeaponException;
-import com.app.types.SlotType;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.app.types.ArmorType.*;
-import static com.app.types.WeaponType.AXE;
-import static com.app.types.WeaponType.STAFF;
+import static com.app.game.enums.ArmorType.*;
+import static com.app.game.enums.WeaponType.AXE;
+import static com.app.game.enums.WeaponType.STAFF;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ItemTest {

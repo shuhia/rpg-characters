@@ -1,4 +1,4 @@
-package com.app.game.items.exceptions;
+package com.app.game.exceptions;
 
 public class InvalidArmorException extends Exception {
     public InvalidArmorException(String message) {

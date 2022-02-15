@@ -1,13 +1,11 @@
 package com.app.game;
 
+import com.app.game.enums.ArmorType;
+import com.app.game.enums.SlotType;
+import com.app.game.enums.WeaponType;
 import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
-import com.app.game.items.exceptions.InvalidArmorException;
-import com.app.game.items.exceptions.InvalidWeaponException;
-import com.app.types.ArmorType;
-import com.app.types.SlotType;
-import com.app.types.WeaponType;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -60,11 +58,11 @@ public abstract class Character {
     }
 
     public boolean equip(Item item) throws Exception {
-        if(this.level < item.getRequiredLevel()){
-            item.throwInvalid("requires level: "+item.getRequiredLevel());
+        if (this.level < item.getRequiredLevel()) {
+            item.throwInvalid("requires level: " + item.getRequiredLevel());
         }
         if (!this.equipableItems.stream().anyMatch((type) -> type == item.getType())) {
-            item.throwInvalid("type:" + item.getType()+ " Cannot be equipped by "+this.getClass().getSimpleName());
+            item.throwInvalid("type:" + item.getType() + " Cannot be equipped by " + this.getClass().getSimpleName());
         }
         this.equipped.put(item.getSlot(), item);
         return true;

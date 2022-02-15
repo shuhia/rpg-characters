@@ -1,9 +1,9 @@
 package com.app.game.items;
 
 import com.app.game.Attributes;
-import com.app.game.items.exceptions.InvalidArmorException;
-import com.app.types.ArmorType;
-import com.app.types.SlotType;
+import com.app.game.enums.ArmorType;
+import com.app.game.enums.SlotType;
+import com.app.game.exceptions.InvalidArmorException;
 
 public class Armor extends Item {
 

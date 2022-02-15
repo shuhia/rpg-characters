@@ -1,8 +1,8 @@
 package com.app.game.items;
 
-import com.app.game.items.exceptions.InvalidWeaponException;
-import com.app.types.SlotType;
-import com.app.types.WeaponType;
+import com.app.game.enums.SlotType;
+import com.app.game.enums.WeaponType;
+import com.app.game.exceptions.InvalidWeaponException;
 
 public class Weapon extends Item {
     double damage;
@@ -37,6 +37,6 @@ public class Weapon extends Item {
 
     @Override
     public void throwInvalid(String message) throws Exception {
-        throw new InvalidWeaponException("Weapon " +message);
+        throw new InvalidWeaponException("Weapon " + message);
     }
 }
