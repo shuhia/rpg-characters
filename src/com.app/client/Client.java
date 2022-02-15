@@ -89,7 +89,7 @@ public class Client implements IClient {
             var type = askFor("type", WeaponType.values());
             var name = askFor("name");
             var requiredLevel = askForValue("required level");
-            var slot = askFor("slot type", SlotType.values());
+            var slot = askFor("slot type", new Enum[]{SlotType.WEAPON});
             var attackSpeedPerSecond = askForValue("attackspeed per second");
             var damage = askForValue("damage");
             item = new Weapon(name, requiredLevel, WeaponType.valueOf(type), SlotType.valueOf(slot), damage, attackSpeedPerSecond);
