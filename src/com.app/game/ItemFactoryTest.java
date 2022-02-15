@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * This class tests if factory creates a item of the specified type 
+ */
 class ItemFactoryTest {
     @Test
     void createItemOfWeapon_ExpectTypeWeapon() {

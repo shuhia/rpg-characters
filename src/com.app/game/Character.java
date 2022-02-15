@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-
+/***
+ * This class is used to specify required fields and methods to create a character of any type.
+ */
 public abstract class Character {
     public String name;
     public int level = 1;
@@ -46,10 +48,6 @@ public abstract class Character {
         return level;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public int levelUp() {
         this.level++;
         return this.level;
@@ -59,23 +57,44 @@ public abstract class Character {
         if (this.level < item.getRequiredLevel()) {
             item.throwInvalid("requires level: " + item.getRequiredLevel());
         }
-        if (!this.equipableItems.stream().anyMatch((type) -> type == item.getType())) {
+        if (!this.equipableItems.contains(item.getType())) {
             item.throwInvalid("type:" + item.getType() + " Cannot be equipped by " + this.getClass().getSimpleName());
         }
+        // Put items in equipped items
         this.equipped.put(item.getSlot(), item);
         return true;
     }
 
+    /***
+     * Sums all attribute bonuses from armors
+     * @return sum of all attribute bonuses
+     */
     public Attributes getAttributesFromArmor() {
+        // Get all armor
+        // sum attributes from each armor
         return equipped.values().stream().filter(Armor.class::isInstance).map((armor) -> ((Armor) armor).getAttributes()).reduce(new Attributes(), Attributes::add);
     }
 
+    /**
+     * Calculates attribute gains based on level
+     * @return total attribute gains from level
+     */
     public Attributes getAttributesFromLevel() {
+        // attributeGain * level.
+        // All characters starts with level.
         return this.levelUpAttributeGain.multiplyWith(this.level - 1);
     }
 
+    /***
+     * Gets total attribute based on characters primary attribute
+     * @return total primary attribute
+     */
     public abstract double getTotalPrimaryAttribute();
 
+    /**
+     * Get total attribute by summing attributes from level, armor and base attributes.
+     * @return total attributes
+     */
     public Attributes getTotalAttributes() {
         Attributes armor = getAttributesFromArmor();
         Attributes level = getAttributesFromLevel();
@@ -84,6 +103,7 @@ public abstract class Character {
         return base.add(armor).add(level);
     }
 
+
     public void printStats() {
         System.out.println("name: " + name);
         System.out.println("level: " + level);
@@ -91,6 +111,10 @@ public abstract class Character {
         System.out.println("total damage per second: " + getTotalDamagePerSecond());
     }
 
+    /**
+     * Calculates weapon damage per second based on equipped weapon.
+     * @return returns total weapon damage per second. Returns 1 if no weapon is equipped
+     */
     public double getWeaponDamagePerSecond() {
         double weaponDamagePerSecond = 1;
         if (equipped.containsKey(SlotType.WEAPON)) {
@@ -98,6 +122,7 @@ public abstract class Character {
         }
         return weaponDamagePerSecond;
     }
+
 
     public double getTotalDamagePerSecond() {
         double weaponDamagePerSecond = getWeaponDamagePerSecond();
@@ -108,11 +133,4 @@ public abstract class Character {
         return 1 + attribute / 100;
     }
 
-    public boolean addItem(Item item) {
-        return this.inventory.add(item);
-    }
-
-    public void printItems() {
-
-    }
 }

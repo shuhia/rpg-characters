@@ -8,7 +8,17 @@ import com.app.game.items.Armor;
 import com.app.game.items.Item;
 import com.app.game.items.Weapon;
 
+/**
+ * This class is used for creating items with some selected properties and some random properties.
+ *
+ */
 public class ItemFactory {
+    /**
+     * Creates an item of specified type with level 1. If weapon then max damage is set to 100. If armor then max attributes is set to 100
+     * @param itemType - type of item. Can be ARMOR or WEAPON
+     * @return returns an item. Else throws.
+     * @throws InvalidItemException
+     */
     public Item createItemOf(String itemType) throws InvalidItemException {
         switch (itemType.toUpperCase()) {
             case "ARMOR" -> {
@@ -34,6 +44,12 @@ public class ItemFactory {
         }
     }
 
+    /**
+     * Returns a random element from array of any type
+     * @param values - the array containing elements
+     * @param <E> - generic term E
+     * @return - return value of type E
+     */
     private <E> E getRandomElement(E[] values) {
         return values[(int) Math.floor(Math.random() * values.length)];
     }
