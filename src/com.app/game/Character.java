@@ -77,6 +77,7 @@ public abstract class Character {
 
     /**
      * Calculates attribute gains based on level
+     *
      * @return total attribute gains from level
      */
     public Attributes getAttributesFromLevel() {
@@ -93,6 +94,7 @@ public abstract class Character {
 
     /**
      * Get total attribute by summing attributes from level, armor and base attributes.
+     *
      * @return total attributes
      */
     public Attributes getTotalAttributes() {
@@ -113,6 +115,7 @@ public abstract class Character {
 
     /**
      * Calculates weapon damage per second based on equipped weapon.
+     *
      * @return returns total weapon damage per second. Returns 1 if no weapon is equipped
      */
     public double getWeaponDamagePerSecond() {
@@ -133,4 +136,18 @@ public abstract class Character {
         return 1 + attribute / 100;
     }
 
+    /***
+     * Adds item to inventory
+     * @param item
+     */
+    public void addItem(Item item) {
+        this.inventory.add(item);
+    }
+
+    /***
+     * Prints every item in inventory
+     */
+    public void printItems() {
+        this.inventory.forEach((this::addItem));
+    }
 }
