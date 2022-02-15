@@ -148,6 +148,6 @@ public abstract class Character {
      * Prints every item in inventory
      */
     public void printItems() {
-        this.inventory.forEach((this::addItem));
+        this.inventory.forEach(Item::printStats);
     }
 }
