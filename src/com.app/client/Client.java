@@ -19,6 +19,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+/***
+ * This class is used for interacting with rpg characters classes in the Game folder
+ */
 public class Client implements IClient {
     static Scanner scanner = new Scanner(System.in);
 
@@ -30,6 +33,9 @@ public class Client implements IClient {
         return input;
     }
 
+    /***
+     * Starts the game
+     */
     public void start() {
 
         try {
@@ -40,17 +46,24 @@ public class Client implements IClient {
 
     }
 
-
+    /***
+     * Runs the game
+     * @throws Exception
+     */
     public void run() throws Exception {
         var restartGame = false;
         do {
             var itemFactory = new ItemFactory();
+            // Welcome user
             System.out.println("Welcome to RPG Characters");
+            // Ask for a character type
             String characterType = askFor("character type", ISpecifications.characters.values());
+            // Visit the character shop to get a character object of type
             Character character = visitCharacterShop(characterType);
-            LinkedList<Item> inventory = new LinkedList<Item>();
             var isPlaying = true;
             while (isPlaying) {
+                // Ask user for action type
+                // actions.values from IClient values
                 String actionType = askFor("action type", actions.values());
                 switch (actionType) {
                     case "LEVEL_UP" -> {
@@ -87,7 +100,10 @@ public class Client implements IClient {
         while (restartGame);
     }
 
-
+    /***
+     * Asks visitor for weaponType and redirects user to correct section
+     * @return
+     */
     private Item visitItemShop() {
         // Ask visitor for item type
         String[] options = {"WEAPON", "ARMOR"};
@@ -109,6 +125,10 @@ public class Client implements IClient {
         return item;
     }
 
+    /***
+     * Asks visitor for armor specifications
+     * @return a piece of armor
+     */
     private Item visitArmorSection() {
         Item item;
         var type = askFor("type", ArmorType.values());
@@ -120,6 +140,10 @@ public class Client implements IClient {
         return item;
     }
 
+    /***
+     * Asks visitor for weapon specifications
+     * @return
+     */
     private Item visitWeaponSection() {
         Item item;
         var type = askFor("type", WeaponType.values());
@@ -132,6 +156,12 @@ public class Client implements IClient {
         return item;
     }
 
+    /***
+     * Used to get a character from the store based on characterType
+     * @param type - type of character
+     * @return - returns a character
+     * @throws IllegalArgumentException
+     */
     public Character visitCharacterShop(Object type) throws IllegalArgumentException {
         System.out.println(type.toString());
         switch (type.toString()) {
@@ -155,6 +185,10 @@ public class Client implements IClient {
 
     }
 
+    /***
+     * Asks for what values the user want to set for each attribute.
+     * @return attributes
+     */
     public Attributes askForAttributes() {
         var attributes = new Attributes();
         attributes.setStrength(askForValue("strength"));
@@ -163,10 +197,20 @@ public class Client implements IClient {
         return attributes;
     }
 
+    /***
+     * Asks user for a value
+     * @param something - name of the value
+     * @return a value
+     */
     public Integer askForValue(String something) {
         return askForValue(something, 0);
     }
-
+    /***
+     * Asks user for a value
+     * @param something - name of the value
+     * @param min - minimum value
+     * @return a value
+     */
     public Integer askForValue(String something, int min) {
 
         int number = -1;
@@ -183,6 +227,11 @@ public class Client implements IClient {
         return number;
     }
 
+    /***
+     * Ask for a value that is text based. For example: askFor(name) returns a name.
+     * @param something - anything in text
+     * @return text
+     */
     public String askFor(String something) {
         System.out.println("Please enter a " + something);
         var string = scanner.nextLine().trim();
@@ -193,12 +242,24 @@ public class Client implements IClient {
         return string;
     }
 
+    /***
+     * Asks user to select one value out of many values based on options provided.
+     * @param something - the name of the value you are asking for
+     * @param options - name of the values
+     * @return name of a value
+     */
     public String askFor(String something, Enum<?>[] options) {
         // Convert enum to string
         String[] strings = Arrays.stream(options).map(Enum::name).toArray(String[]::new);
         return askFor(something, strings);
     }
 
+    /***
+     * Asks user to select one value out of many values based on options provided.
+     * @param something - the name of the value you are asking for
+     * @param options - name of the values
+     * @return name of a value
+     */
     @Override
     public String askFor(String something, String[] options) {
         int choice = -1;
@@ -224,6 +285,11 @@ public class Client implements IClient {
         return option;
     }
 
+    /***
+     * Print options in the format of a ordered list. For example: 1.option, 2.option, ....
+     * @param options - options
+     * @return ordered list in the format of a string
+     */
     @Override
     public String printOptions(String[] options) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -237,6 +303,11 @@ public class Client implements IClient {
         return response;
     }
 
+    /***
+     * Print the selected option surrounded with some clarifications
+     * @param option
+     * @return
+     */
     @Override
     public String printSelectedOption(String option) {
         var response = "You choice: " + option;
